@@ -1,32 +1,37 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { FaMicrosoft } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Row } from "react-bootstrap";
+import { Row, Alert } from "react-bootstrap";
 import SignInCard from "main/components/Auth/SignInCard";
 import { useSystemInfo } from "main/utils/systemInfo";
 import loginProviderSchools from "main/utils/loginProviderSchools";
 
-export default function SignInPage() {
-  const microsoftIcon = () => {
-    return (
-      <span data-testid={"SignInPage-microsoftIcon"}>
-        <FaMicrosoft size={"10em"} role={"img"} />
-      </span>
-    );
-  };
+const microsoftIcon = () => {
+  return (
+    <span data-testid={"SignInPage-microsoftIcon"}>
+      <FaMicrosoft size={"10em"} role={"img"} />
+    </span>
+  );
+};
 
+const googleIcon = () => {
+  return (
+    <span data-testid={"SignInPage-googleIcon"}>
+      <FcGoogle size={"10em"} role={"img"} />
+    </span>
+  );
+};
+
+export default function SignInPage({
+  onClick,
+  alert,
+  alertVariant = "danger"
+}) {
   const { data: systemInfo } = useSystemInfo();
-
-  const googleIcon = () => {
-    return (
-      <span data-testid={"SignInPage-googleIcon"}>
-        <FcGoogle size={"10em"} role={"img"} />
-      </span>
-    );
-  };
 
   return (
     <BasicLayout>
+      {alert && <Alert variant={alertVariant}>{alert}</Alert>}
       <Row
         xs={1}
         md={2}
@@ -49,6 +54,7 @@ export default function SignInPage() {
             }
             url={systemInfo.oauthLogin}
             testid={"google"}
+            {...(onClick ? { onClick } : {})}
           />
         )}
         {systemInfo.activeDirectoryUrl && (
@@ -68,6 +74,7 @@ export default function SignInPage() {
             }
             url={systemInfo.activeDirectoryUrl}
             testid={"microsoft"}
+            {...(onClick ? { onClick } : {})}
           />
         )}
       </Row>
