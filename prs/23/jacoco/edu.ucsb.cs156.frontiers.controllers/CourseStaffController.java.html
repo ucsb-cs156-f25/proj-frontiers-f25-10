@@ -191,7 +191,7 @@ import org.springframework.web.bind.annotation.*;
 <span class="fc" id="L191">    boolean orgRemovalSuccessful = false;</span>
 <span class="fc" id="L192">    String orgRemovalErrorMessage = null;</span>
 
-    // Try to remove the student from the organization if they have a GitHub login
+    // Try to remove the course staff from the organization if they have a GitHub login
 <span class="fc bfc" id="L195" title="All 2 branches covered.">    if (staffMember.getGithubLogin() != null</span>
 <span class="fc bfc" id="L196" title="All 2 branches covered.">        &amp;&amp; course.getOrgName() != null</span>
 <span class="fc bfc" id="L197" title="All 4 branches covered.">        &amp;&amp; course.getInstallationId() != null</span>
@@ -201,7 +201,7 @@ import org.springframework.web.bind.annotation.*;
 <span class="fc" id="L201">        organizationMemberService.removeOrganizationMember(staffMember);</span>
 <span class="fc" id="L202">        orgRemovalSuccessful = true;</span>
 <span class="fc" id="L203">      } catch (Exception e) {</span>
-<span class="fc" id="L204">        log.error(&quot;Error removing student from organization: {}&quot;, e.getMessage());</span>
+<span class="fc" id="L204">        log.error(&quot;Error removing course staff from organization: {}&quot;, e.getMessage());</span>
 <span class="fc" id="L205">        orgRemovalErrorMessage = e.getMessage();</span>
         // Continue with deletion even if organization removal fails
 <span class="fc" id="L207">      }</span>
