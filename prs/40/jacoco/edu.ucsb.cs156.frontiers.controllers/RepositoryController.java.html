@@ -47,24 +47,25 @@ import org.springframework.web.bind.annotation.RestController;
       @RequestParam String repoPrefix,
       @RequestParam Optional&lt;Boolean&gt; isPrivate,
       @RequestParam RepositoryPermissions permissions,
-      @RequestParam Optional&lt;RepositoryCreationOption&gt; creationOption) {
-<span class="fc" id="L51">    Course course =</span>
+      @RequestParam(required = false, defaultValue = &quot;STUDENTS_ONLY&quot;)
+          RepositoryCreationOption creationOption) {
+<span class="fc" id="L52">    Course course =</span>
         courseRepository
-<span class="fc" id="L53">            .findById(courseId)</span>
-<span class="fc" id="L54">            .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
-<span class="fc bfc" id="L55" title="All 4 branches covered.">    if (course.getOrgName() == null || course.getInstallationId() == null) {</span>
-<span class="fc" id="L56">      throw new NoLinkedOrganizationException(course.getCourseName());</span>
+<span class="fc" id="L54">            .findById(courseId)</span>
+<span class="fc" id="L55">            .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
+<span class="fc bfc" id="L56" title="All 4 branches covered.">    if (course.getOrgName() == null || course.getInstallationId() == null) {</span>
+<span class="fc" id="L57">      throw new NoLinkedOrganizationException(course.getCourseName());</span>
     } else {
       CreateStudentOrStaffRepositoriesJob job =
-<span class="fc" id="L59">          CreateStudentOrStaffRepositoriesJob.builder()</span>
-<span class="fc" id="L60">              .repositoryPrefix(repoPrefix)</span>
-<span class="fc" id="L61">              .isPrivate(isPrivate.orElse(false))</span>
-<span class="fc" id="L62">              .repositoryService(repositoryService)</span>
-<span class="fc" id="L63">              .course(course)</span>
-<span class="fc" id="L64">              .permissions(permissions)</span>
-<span class="fc" id="L65">              .creationOption(creationOption.orElse(RepositoryCreationOption.STUDENTS_ONLY))</span>
-<span class="fc" id="L66">              .build();</span>
-<span class="fc" id="L67">      return jobService.runAsJob(job);</span>
+<span class="fc" id="L60">          CreateStudentOrStaffRepositoriesJob.builder()</span>
+<span class="fc" id="L61">              .repositoryPrefix(repoPrefix)</span>
+<span class="fc" id="L62">              .isPrivate(isPrivate.orElse(false))</span>
+<span class="fc" id="L63">              .repositoryService(repositoryService)</span>
+<span class="fc" id="L64">              .course(course)</span>
+<span class="fc" id="L65">              .permissions(permissions)</span>
+<span class="fc" id="L66">              .creationOption(creationOption)</span>
+<span class="fc" id="L67">              .build();</span>
+<span class="fc" id="L68">      return jobService.runAsJob(job);</span>
     }
   }
 }
