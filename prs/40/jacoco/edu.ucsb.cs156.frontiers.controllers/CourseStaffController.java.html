@@ -61,7 +61,7 @@ import org.springframework.web.bind.annotation.*;
 <span class="fc" id="L61">        CourseStaff.builder()</span>
 <span class="fc" id="L62">            .firstName(firstName)</span>
 <span class="fc" id="L63">            .lastName(lastName)</span>
-<span class="fc" id="L64">            .email(email)</span>
+<span class="fc" id="L64">            .email(email.strip())</span>
 <span class="fc" id="L65">            .course(course)</span>
 <span class="fc" id="L66">            .build();</span>
 
