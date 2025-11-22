@@ -90,7 +90,7 @@ import org.springframework.web.server.ResponseStatusException;
 <span class="fc" id="L90">            .studentId(studentId)</span>
 <span class="fc" id="L91">            .firstName(firstName)</span>
 <span class="fc" id="L92">            .lastName(lastName)</span>
-<span class="fc" id="L93">            .email(email)</span>
+<span class="fc" id="L93">            .email(email.strip())</span>
 <span class="fc bfc" id="L94" title="All 2 branches covered.">            .section(section != null ? section : &quot;&quot;)</span>
 <span class="fc" id="L95">            .build();</span>
 
@@ -129,7 +129,7 @@ import org.springframework.web.server.ResponseStatusException;
 
   public static UpsertResponse upsertStudent(
       RosterStudent student, Course course, RosterStatus rosterStatus) {
-<span class="fc" id="L132">    String convertedEmail = CanonicalFormConverter.convertToValidEmail(student.getEmail());</span>
+<span class="fc" id="L132">    String convertedEmail = CanonicalFormConverter.convertToValidEmail(student.getEmail()).strip();</span>
 <span class="fc" id="L133">    Optional&lt;RosterStudent&gt; existingStudent =</span>
 <span class="fc" id="L134">        course.getRosterStudents().stream()</span>
 <span class="fc" id="L135">            .filter(</span>
