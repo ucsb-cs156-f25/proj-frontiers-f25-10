@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>191/191</span>
+                <span class='fraction'>199/199</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>191/191</span>
+                <span class='fraction'>199/199</span>
             </div>
         
             
@@ -362,7 +362,22 @@
 <a name='L297'></a><a href='#L297'>297</a>
 <a name='L298'></a><a href='#L298'>298</a>
 <a name='L299'></a><a href='#L299'>299</a>
-<a name='L300'></a><a href='#L300'>300</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L300'></a><a href='#L300'>300</a>
+<a name='L301'></a><a href='#L301'>301</a>
+<a name='L302'></a><a href='#L302'>302</a>
+<a name='L303'></a><a href='#L303'>303</a>
+<a name='L304'></a><a href='#L304'>304</a>
+<a name='L305'></a><a href='#L305'>305</a>
+<a name='L306'></a><a href='#L306'>306</a>
+<a name='L307'></a><a href='#L307'>307</a>
+<a name='L308'></a><a href='#L308'>308</a>
+<a name='L309'></a><a href='#L309'>309</a>
+<a name='L310'></a><a href='#L310'>310</a>
+<a name='L311'></a><a href='#L311'>311</a>
+<a name='L312'></a><a href='#L312'>312</a>
+<a name='L313'></a><a href='#L313'>313</a>
+<a name='L314'></a><a href='#L314'>314</a>
+<a name='L315'></a><a href='#L315'>315</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -629,6 +644,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -643,14 +666,21 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -924,6 +954,14 @@ export default function HelpCsvPage() {
                     &lt;td&gt;&lt;/td&gt;
                   &lt;/tr&gt;
                   &lt;tr&gt;
+                    &lt;td&gt;section&lt;/td&gt;
+                    &lt;td&gt;Course section name/time&lt;/td&gt;
+                    &lt;td&gt;
+                      Identifies which section of the course this student is
+                      enrolled in
+                    &lt;/td&gt;
+                  &lt;/tr&gt;
+                  &lt;tr&gt;
                     &lt;td&gt;userId&lt;/td&gt;
                     &lt;td&gt;Internal user ID&lt;/td&gt;
                     &lt;td&gt;Links to the user account in the system&lt;/td&gt;
@@ -951,6 +989,13 @@ export default function HelpCsvPage() {
                     &lt;td&gt;GitHub organization status&lt;/td&gt;
                     &lt;td&gt;PENDING, JOINCOURSE, INVITED, MEMBER, or OWNER&lt;/td&gt;
                   &lt;/tr&gt;
+                  &lt;tr&gt;
+                    &lt;td&gt;teams&lt;/td&gt;
+                    &lt;td&gt;List of team names&lt;/td&gt;
+                    &lt;td&gt;
+                      Identifies which team(s) the student is a part of, if any
+                    &lt;/td&gt;
+                  &lt;/tr&gt;
                 &lt;/tbody&gt;
               &lt;/table&gt;
             &lt;/Accordion.Body&gt;
@@ -967,7 +1012,7 @@ export default function HelpCsvPage() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-22T22:41:26.504Z
+                at 2025-11-23T07:25:00.547Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
