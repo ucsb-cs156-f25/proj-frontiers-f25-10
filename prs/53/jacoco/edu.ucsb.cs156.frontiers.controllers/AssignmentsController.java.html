@@ -106,7 +106,7 @@ import org.springframework.web.bind.annotation.RestController;
 <span class="fc" id="L106">    assignment.setPermission(permission);</span>
 <span class="fc" id="L107">    return assignmentRepository.save(assignment);</span>
   }
-    
+
   @Operation(summary = &quot;Delete an assignment&quot;)
   @PreAuthorize(&quot;@CourseSecurity.hasManagePermissions(#root, #courseId)&quot;)
   @DeleteMapping(&quot;/{id}&quot;)
