@@ -74,7 +74,7 @@ import org.springframework.web.bind.annotation.RestController;
   /**
    * This method updates an Assignment.
    *
-   * @param courseId the ID of the course the assignment is associated with
+   * @param assignmentId the ID of the course the assignment is associated with
    * @param name the name of the assignment
    * @param asnType the assignment type (individual vs team)
    * @param visibility the visbility of the assignment (public vs private)
@@ -85,7 +85,7 @@ import org.springframework.web.bind.annotation.RestController;
   @PreAuthorize(&quot;@CourseSecurity.hasManagePermissions(#root, #courseId)&quot;)
   @PutMapping(&quot;/put&quot;)
   public Assignment updateAssignment(
-      @Parameter(name = &quot;courseId&quot;) @RequestParam Long courseId,
+      @Parameter(name = &quot;assignmentId&quot;) @RequestParam Long assignmentId,
       @Parameter(name = &quot;name&quot;) @RequestParam String name,
       @Parameter(name = &quot;asnType&quot;) @RequestParam AssignmentType asnType,
       @Parameter(name = &quot;visibility&quot;) @RequestParam
@@ -96,8 +96,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 <span class="fc" id="L97">    Assignment assignment =</span>
         assignmentRepository
-<span class="fc" id="L99">            .findById(courseId)</span>
-<span class="fc" id="L100">            .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
+<span class="fc" id="L99">            .findById(assignmentId)</span>
+<span class="fc" id="L100">            .orElseThrow(() -&gt; new EntityNotFoundException(Assignment.class, assignmentId));</span>
 
 <span class="fc" id="L102">    assignment.setAsnType(asnType);</span>
 <span class="fc" id="L103">    assignment.setVisibility(visibility);</span>
