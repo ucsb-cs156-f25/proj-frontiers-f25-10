@@ -117,7 +117,7 @@ import org.springframework.web.bind.annotation.RestController;
     // check course exists
 <span class="fc" id="L118">    courseRepository</span>
 <span class="fc" id="L119">        .findById(courseId)</span>
-<span class="pc" id="L120">        .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
+<span class="fc" id="L120">        .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
 
     // find assignment or throw error
 <span class="fc" id="L123">    Assignment assignment =</span>
