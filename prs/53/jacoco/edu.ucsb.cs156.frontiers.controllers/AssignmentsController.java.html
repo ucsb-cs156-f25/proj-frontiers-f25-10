@@ -12,6 +12,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = &quot;Assignments&quot;)
 @RequestMapping(&quot;/api/assignments&quot;)
 @RestController
-<span class="fc" id="L24">@Slf4j</span>
-<span class="fc" id="L25">public class AssignmentsController extends ApiController {</span>
+<span class="fc" id="L26">@Slf4j</span>
+<span class="fc" id="L27">public class AssignmentsController extends ApiController {</span>
   @Autowired private AssignmentRepository assignmentRepository;
 
   @Autowired private CourseRepository courseRepository;
@@ -52,23 +54,23 @@ import org.springframework.web.bind.annotation.RestController;
 
     // Get Course or else throw an error
 
-<span class="fc" id="L55">    Course course =</span>
+<span class="fc" id="L57">    Course course =</span>
         courseRepository
-<span class="fc" id="L57">            .findById(courseId)</span>
-<span class="fc" id="L58">            .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
+<span class="fc" id="L59">            .findById(courseId)</span>
+<span class="fc" id="L60">            .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
 
     Assignment assignment =
-<span class="fc" id="L61">        Assignment.builder()</span>
-<span class="fc" id="L62">            .course(course)</span>
-<span class="fc" id="L63">            .name(name)</span>
-<span class="fc" id="L64">            .asnType(asnType)</span>
-<span class="fc" id="L65">            .visibility(visibility)</span>
-<span class="fc" id="L66">            .permission(permission)</span>
-<span class="fc" id="L67">            .build();</span>
+<span class="fc" id="L63">        Assignment.builder()</span>
+<span class="fc" id="L64">            .course(course)</span>
+<span class="fc" id="L65">            .name(name)</span>
+<span class="fc" id="L66">            .asnType(asnType)</span>
+<span class="fc" id="L67">            .visibility(visibility)</span>
+<span class="fc" id="L68">            .permission(permission)</span>
+<span class="fc" id="L69">            .build();</span>
 
-<span class="fc" id="L69">    Assignment savedAssignment = assignmentRepository.save(assignment);</span>
+<span class="fc" id="L71">    Assignment savedAssignment = assignmentRepository.save(assignment);</span>
 
-<span class="fc" id="L71">    return savedAssignment;</span>
+<span class="fc" id="L73">    return savedAssignment;</span>
   }
 
   /**
@@ -94,15 +96,39 @@ import org.springframework.web.bind.annotation.RestController;
           edu.ucsb.cs156.frontiers.enums.Permission permission)
       throws EntityNotFoundException {
 
-<span class="fc" id="L97">    Assignment assignment =</span>
+<span class="fc" id="L99">    Assignment assignment =</span>
         assignmentRepository
-<span class="fc" id="L99">            .findById(assignmentId)</span>
-<span class="fc" id="L100">            .orElseThrow(() -&gt; new EntityNotFoundException(Assignment.class, assignmentId));</span>
+<span class="fc" id="L101">            .findById(assignmentId)</span>
+<span class="fc" id="L102">            .orElseThrow(() -&gt; new EntityNotFoundException(Assignment.class, assignmentId));</span>
 
-<span class="fc" id="L102">    assignment.setAsnType(asnType);</span>
-<span class="fc" id="L103">    assignment.setVisibility(visibility);</span>
-<span class="fc" id="L104">    assignment.setPermission(permission);</span>
-<span class="fc" id="L105">    return assignmentRepository.save(assignment);</span>
+<span class="fc" id="L104">    assignment.setAsnType(asnType);</span>
+<span class="fc" id="L105">    assignment.setVisibility(visibility);</span>
+<span class="fc" id="L106">    assignment.setPermission(permission);</span>
+<span class="fc" id="L107">    return assignmentRepository.save(assignment);</span>
+  }
+    
+  @Operation(summary = &quot;Delete an assignment&quot;)
+  @PreAuthorize(&quot;@CourseSecurity.hasManagePermissions(#root, #courseId)&quot;)
+  @DeleteMapping(&quot;/{id}&quot;)
+  public Object deleteAssignment(
+      @Parameter(name = &quot;id&quot;) @PathVariable Long id,
+      @Parameter(name = &quot;courseId&quot;) @RequestParam Long courseId) {
+
+    // check course exists
+<span class="fc" id="L118">    courseRepository</span>
+<span class="fc" id="L119">        .findById(courseId)</span>
+<span class="pc" id="L120">        .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
+
+    // find assignment or throw error
+<span class="fc" id="L123">    Assignment assignment =</span>
+        assignmentRepository
+<span class="fc" id="L125">            .findById(id)</span>
+<span class="fc" id="L126">            .orElseThrow(() -&gt; new EntityNotFoundException(Assignment.class, id));</span>
+
+    // delete the assignment
+<span class="fc" id="L129">    assignmentRepository.delete(assignment);</span>
+
+<span class="fc" id="L131">    return genericMessage(String.format(&quot;Assignment with id %s deleted&quot;, id));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -48,7 +48,7 @@ frontiers,edu.ucsb.cs156.frontiers.controllers,AdminsController,0,86,0,2,0,19,0,
 frontiers,edu.ucsb.cs156.frontiers.controllers,JobsController,0,134,0,2,0,31,0,12,0,11
 frontiers,edu.ucsb.cs156.frontiers.controllers,CoursesController.StaffCoursesDTO,0,27,0,0,0,1,0,1,0,1
 frontiers,edu.ucsb.cs156.frontiers.controllers,TestErrorController,0,8,0,0,0,2,0,2,0,2
-frontiers,edu.ucsb.cs156.frontiers.controllers,AssignmentsController,0,73,0,0,0,21,0,6,0,6
+frontiers,edu.ucsb.cs156.frontiers.controllers,AssignmentsController,6,111,0,0,0,29,1,8,1,8
 frontiers,edu.ucsb.cs156.frontiers.controllers,TeamsController.TeamMemberStatus,0,21,0,0,0,4,0,1,0,1
 frontiers,edu.ucsb.cs156.frontiers.controllers,RosterStudentsCSVController.RosterSourceType,0,33,0,0,0,6,0,1,0,1
 frontiers,edu.ucsb.cs156.frontiers.controllers,RosterStudentsController,0,636,0,78,0,164,0,61,0,22
